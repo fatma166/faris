@@ -22,6 +22,7 @@ use Tamara\Request\Checkout\Order\ShoppingCart;
 use Tamara\Client;*/
 
 use Illuminate\Support\Facades\App;
+use phpseclib3\Crypt\Random;
 use Tamara\Configuration;
 use Tamara\Client;
 use Tamara\Model\Order\Order;
@@ -57,12 +58,12 @@ public function create(Request $request)
   $cart_data= CartManager::get_cart()->first();
 
     $order = new Order();
-    $order->setOrderReferenceId($cart_data['id']);
+    //$order->setOrderReferenceId($cart_data['id']);
     $order->setLocale(app::getLocale());
     $order->setCurrency($currency_code);
     $order->setTotalAmount(new Money($value, $currency_code));
     $order->setCountryCode($country_code);
-   // $order->setPaymentType('PAY_BY_INSTALMENTS');
+   $order->setPaymentType('PAY_BY_INSTALMENTS');
    // $order->setPlatform('Magento');
    // $order->setDescription('Some order description');
     $order->setTaxAmount(new Money($cart_data['tax'], $currency_code));
@@ -109,6 +110,8 @@ public function create(Request $request)
     # discount
    // $order->setDiscount(new Discount('Coupon', new Money(0.00, 'SAR'));
    // $this->getToken($url,$token);
+    $url='https://api-sandbox.tamara.co';
+    $token="00Q8e000004C7yFEAS";
     $client = Client::create(Configuration::create($url, $token));
     $request = new CreateCheckoutRequest($order);
 
