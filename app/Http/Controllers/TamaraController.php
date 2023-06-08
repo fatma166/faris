@@ -101,17 +101,17 @@ public function create(Request $request)
 
     # merchant urls
     $merchantUrl = new MerchantUrl();
-    $merchantUrl->setSuccessUrl('https://example.com/tamara/success');
-    $merchantUrl->setFailureUrl('https://example.com/tamara/failure');
-    $merchantUrl->setCancelUrl('https://example.com/tamara/cancel');
-    $merchantUrl->setNotificationUrl('https://example.com/tamara/notification');
+    $merchantUrl->setSuccessUrl('https://farisgrp.com/tamara/success');
+    $merchantUrl->setFailureUrl('https://farisgrp.com/tamara/failure');
+    $merchantUrl->setCancelUrl('https://farisgrp.com/tamara/cancel');
+    $merchantUrl->setNotificationUrl('https://farisgrp.com/tamara/notification');
     $order->setMerchantUrl($merchantUrl);
    // dd($order);
     # discount
    // $order->setDiscount(new Discount('Coupon', new Money(0.00, 'SAR'));
    // $this->getToken($url,$token);
-    $url='https://api-sandbox.tamara.co';
-    $token="00Q8e000004C7yFEAS";
+    $url=$config['tamara_url'];
+    $token=$config['tamara_token'];
     $client = Client::create(Configuration::create($url, $token));
     $request = new CreateCheckoutRequest($order);
 

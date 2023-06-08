@@ -2699,4 +2699,6 @@
   'Wallet_Payments' => 'Wallet Payments',
   'Offline_Payments' => 'Offline Payments',
   'software_update' => 'Software update',
+  'Configure' => 'Configure',
+  'url' => 'Url',
 );

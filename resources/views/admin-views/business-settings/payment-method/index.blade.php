@@ -1154,14 +1154,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="title-color d-flex">{{\App\CPU\translate('Tamara')}} {{\App\CPU\translate('Client')}}{{\App\CPU\translate('ID')}}</label>
-                                    <input type="text" class="form-control" name="tamara_client_id"
-                                           value="{{env('APP_MODE')=='demo'?'':$config['tamara_client_id']}}">
+                                    <label class="title-color d-flex">{{\App\CPU\translate('Tamara')}} {{\App\CPU\translate('url')}}</label>
+                                    <input type="text" class="form-control" name="tamara_url"
+                                           value="{{env('APP_MODE')=='demo'?'':$config['tamara_url']}}">
                                 </div>
                                 <div class="form-group">
-                                    <label class="title-color d-flex">{{\App\CPU\translate('Tamara')}} {{\App\CPU\translate('Secret')}} </label>
-                                    <input type="text" class="form-control" name="tamara_secret"
-                                           value="{{env('APP_MODE')=='demo'?'':$config['tamara_secret']}}">
+                                    <label class="title-color d-flex">{{\App\CPU\translate('Tamara')}} {{\App\CPU\translate('token')}} </label>
+                                    <input type="text" class="form-control" name="tamara_token"
+                                           value="{{env('APP_MODE')=='demo'?'':$config['tamara_token']}}">
                                 </div>
                                 <div class="mt-3 d-flex flex-wrap justify-content-end gap-10">
                                     <button type="{{env('APP_MODE')!='demo'?'submit':'button'}}"

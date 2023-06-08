@@ -100,8 +100,8 @@ class PaymentMethodController extends Controller
                     'value' => json_encode([
                         'status' => 1,
                         'environment' => 'sandbox',
-                        'tamara_client_id' => '',
-                        'tamara_secret' => '',
+                        'tamara_token' => '',
+                        'tamara_url' => '',
                     ]),
                     'created_at' => now(),
                     'updated_at' => now()
@@ -109,8 +109,8 @@ class PaymentMethodController extends Controller
             } else {
                 if ($request['status'] == 1) {
                     $request->validate([
-                        'tamara_client_id' => 'required',
-                        'tamara_secret' => 'required'
+                        'tamara_url' => 'required',
+                        'tamara_token' => 'required'
                     ]);
                 }
                 DB::table('business_settings')->where(['type' => 'tamara'])->update([
@@ -118,8 +118,8 @@ class PaymentMethodController extends Controller
                     'value' => json_encode([
                         'status' => $request['status'],
                         'environment' => $request['environment'],
-                        'tamara_client_id' => $request['tamara_client_id'],
-                        'tamara_secret' => $request['tamara_secret'],
+                        'tamara_url' => $request['tamara_url'],
+                        'tamara_token' => $request['tamara_token'],
                     ]),
                     'updated_at' => now()
                 ]);
