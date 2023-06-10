@@ -2,6 +2,7 @@
 
 use App\CPU\CartManager;
 use App\CPU\Helpers;
+use App\CPU\OrderManager;
 use App\Model\BusinessSetting;
 use App\Model\Currency;
 use Illuminate\Http\Request;
@@ -56,9 +57,9 @@ public function create(Request $request)
     $discount = session()->has('coupon_discount') ? session('coupon_discount') : 0;
     $value = CartManager::cart_grand_total() - $discount;
   $cart_data= CartManager::get_cart()->first();
-
+    $unique_id = OrderManager::gen_unique_id();
     $order = new Order();
-    //$order->setOrderReferenceId($cart_data['id']);
+    $order->setOrderReferenceId($unique_id );
     $order->setLocale(app::getLocale());
     $order->setCurrency($currency_code);
     $order->setTotalAmount(new Money($value, $currency_code));
@@ -101,8 +102,8 @@ public function create(Request $request)
 
     # merchant urls
     $merchantUrl = new MerchantUrl();
-    $merchantUrl->setSuccessUrl('https://farisgrp.com/tamara/success');
-    $merchantUrl->setFailureUrl('https://farisgrp.com/tamara/failure');
+    $merchantUrl->setSuccessUrl(/*'https://farisgrp.com/tamara/success'*/ route('payment-success'));
+    $merchantUrl->setFailureUrl(/*'https://farisgrp.com/tamara/failure'*/ route('payment-fail'));
     $merchantUrl->setCancelUrl('https://farisgrp.com/tamara/cancel');
     $merchantUrl->setNotificationUrl('https://farisgrp.com/tamara/notification');
     $order->setMerchantUrl($merchantUrl);
